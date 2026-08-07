@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>صفحة الذكريات</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===== خلفية النجوم ===== -->
+    <div class="stars-container">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <!-- زخارف إسلامية متحركة -->
+        <div class="islamic-pattern pattern1">✧</div>
+        <div class="islamic-pattern pattern2">✦</div>
+        <div class="islamic-pattern pattern3">✧</div>
+        <div class="islamic-pattern pattern4">✦</div>
+        <div class="islamic-pattern pattern5">✧</div>
+        <div class="islamic-pattern pattern6">✦</div>
+    </div>
+
+    <header>
+        <h1>اللَّهُمَّ اغْفِرْ لِمَوْتَانَا وَارْحَمْهُمْ</h1>
+        <p>﴿يَا أَيَّتُهَا النَّفْسُ الْمُطْمَئِنَّةُ * ارْجِعِي إِلَىٰ رَبِّكِ رَاضِيَةً مَّرْضِيَّةً * فَادْخُلِي فِي عِبَادِي * وَادْخُلِي جَنَّتِي﴾</p>
+        
+        <!-- ===== أزرار التحكم ===== -->
+        <div class="controls-container">
+            <!-- زر تشغيل الآية -->
+            <button id="playBtn" class="play-btn">
+                <span class="btn-icon">🕌</span>
+                <span class="btn-text">تشغيل هذه الآية</span>
+                <span class="btn-pulse"></span>
+            </button>
+
+            <!-- ===== زر سورة الفاتحة ===== -->
+            <button id="fatihaBtn" class="fatiha-btn">
+                <span class="btn-icon">📖</span>
+                <span class="btn-text">سورة الفاتحة للأموات</span>
+            </button>
+
+            <!-- ===== مستوى الصوت ===== -->
+            <div class="volume-control">
+                <span class="volume-icon">🔊</span>
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.8" class="volume-slider">
+                <span class="volume-value" id="volumeValue">80%</span>
+            </div>
+
+            <audio id="myAudio" loop preload="auto">
+                <source src="ayat.mp3" type="audio/mpeg">
+            </audio>
+
+            <!-- ===== صوت الفاتحة ===== -->
+            <audio id="fatihaAudio" preload="auto">
+                <source src="fatiha.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+
+        <!-- ===== مؤقت التشغيل ===== -->
+        <div class="timer-container" id="timerContainer" style="display: none;">
+            <div class="timer-box">
+                <span class="timer-icon">⏱️</span>
+                <span class="timer-label">مدة التشغيل</span>
+                <span class="timer-time" id="timerDisplay">00:00</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="gallery">
+            <div class="images-container">
+                <div class="img-item">
+                    <img src="images/000.png" alt="صورة 000" onclick="openImage(this.src)">
+                </div>
+                
+                <div class="img-item">
+                    <img src="images/999.png" alt="صورة 999" onclick="openImage(this.src)">
+                </div>
+                
+                <div class="img-item">
+                    <img src="images/888.png" alt="صورة 888" onclick="openImage(this.src)">
+                </div>
+
+                <div class="img-item">
+                    <img src="images/777.jpg" alt="صورة 777" onclick="openImage(this.src)">
+                </div>
+                
+                <div class="img-item">
+                    <img src="images/666.jpg" alt="صورة 666" onclick="openImage(this.src)">
+                </div>
+                
+                <div class="img-item">
+                    <img src="images/555.webp" alt="صورة 555" onclick="openImage(this.src)">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== نافذة عرض الصورة ===== -->
+    <div class="modal" id="imageModal" onclick="closeImage()">
+        <span class="modal-close">✕</span>
+        <img class="modal-image" id="modalImage">
+    </div>
+
+    <footer>
+        <p>إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ</p>
+    </footer>
+
+    <script>
+        // ===== عناصر الصوت =====
+        const audio = document.getElementById('myAudio');
+        const fatihaAudio = document.getElementById('fatihaAudio');
+        const playBtn = document.getElementById('playBtn');
+        const fatihaBtn = document.getElementById('fatihaBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const volumeValue = document.getElementById('volumeValue');
+        const timerContainer = document.getElementById('timerContainer');
+        const timerDisplay = document.getElementById('timerDisplay');
+        
+        let timerInterval = null;
+        let isPlaying = false;
+
+        // ===== التحكم في مستوى الصوت =====
+        volumeSlider.addEventListener('input', function() {
+            const value = this.value;
+            audio.volume = value;
+            fatihaAudio.volume = value;
+            volumeValue.textContent = Math.round(value * 100) + '%';
+            
+            const icon = document.querySelector('.volume-icon');
+            if (value == 0) {
+                icon.textContent = '🔇';
+            } else if (value < 0.3) {
+                icon.textContent = '🔈';
+            } else if (value < 0.7) {
+                icon.textContent = '🔉';
+            } else {
+                icon.textContent = '🔊';
+            }
+        });
+
+        // ===== تشغيل الآية =====
+        playBtn.addEventListener('click', function() {
+            const btn = this;
+            
+            btn.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                btn.style.transform = 'scale(1)';
+            }, 200);
+            
+            // إيقاف الفاتحة إذا كانت تشتغل
+            if (!fatihaAudio.paused) {
+                fatihaAudio.pause();
+                fatihaAudio.currentTime = 0;
+                fatihaBtn.classList.remove('playing');
+                fatihaBtn.innerHTML = `
+                    <span class="btn-icon">📖</span>
+                    <span class="btn-text">سورة الفاتحة للأموات</span>
+                `;
+            }
+            
+            audio.play().then(() => {
+                btn.classList.add('playing');
+                btn.innerHTML = `
+                    <span class="btn-icon">🎵</span>
+                    <span class="btn-text">تُتلى الآن...</span>
+                    <span class="btn-pulse"></span>
+                `;
+                isPlaying = true;
+                startTimer();
+                showTimer();
+                
+                const container = btn.parentElement;
+                const message = document.createElement('div');
+                message.className = 'audio-message';
+                message.innerHTML = `
+                    <span class="msg-icon">✨</span>
+                    <span>﴿ يَا أَيَّتُهَا النَّفْسُ الْمُطْمَئِنَّةُ ﴾</span>
+                    <span class="msg-icon">✨</span>
+                `;
+                container.appendChild(message);
+                
+                setTimeout(() => {
+                    message.style.opacity = '1';
+                    message.style.transform = 'translateY(0)';
+                }, 50);
+                
+                setTimeout(() => {
+                    message.style.opacity = '0';
+                    message.style.transform = 'translateY(-20px)';
+                    setTimeout(() => {
+                        message.remove();
+                    }, 500);
+                }, 4000);
+                
+            }).catch(error => {
+                console.log("Audio play failed:", error);
+                alert('❌ تعذر تشغيل الصوت. تأكد من وجود ملف ayat.mp3');
+            });
+        });
+
+        // ===== تشغيل سورة الفاتحة =====
+        fatihaBtn.addEventListener('click', function() {
+            const btn = this;
+            
+            btn.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                btn.style.transform = 'scale(1)';
+            }, 200);
+            
+            // إيقاف الآية إذا كانت تشتغل
+            if (!audio.paused) {
+                audio.pause();
+                audio.currentTime = 0;
+                playBtn.classList.remove('playing');
+                playBtn.innerHTML = `
+                    <span class="btn-icon">🕌</span>
+                    <span class="btn-text">تشغيل هذه الآية</span>
+                    <span class="btn-pulse"></span>
+                `;
+                stopTimer();
+                hideTimer();
+            }
+            
+            fatihaAudio.play().then(() => {
+                btn.classList.add('playing');
+                btn.innerHTML = `
+                    <span class="btn-icon">🎵</span>
+                    <span class="btn-text">تُتلى الفاتحة...</span>
+                `;
+                isPlaying = true;
+                startTimer();
+                showTimer();
+                
+                const container = btn.parentElement;
+                const message = document.createElement('div');
+                message.className = 'audio-message';
+                message.innerHTML = `
+                    <span class="msg-icon">🤲</span>
+                    <span>اللَّهُمَّ اجْعَلْهَا لِمَوْتَانَا نُورًا وَرَحْمَةً</span>
+                    <span class="msg-icon">🤲</span>
+                `;
+                container.appendChild(message);
+                
+                setTimeout(() => {
+                    message.style.opacity = '1';
+                    message.style.transform = 'translateY(0)';
+                }, 50);
+                
+                setTimeout(() => {
+                    message.style.opacity = '0';
+                    message.style.transform = 'translateY(-20px)';
+                    setTimeout(() => {
+                        message.remove();
+                    }, 500);
+                }, 4000);
+                
+            }).catch(error => {
+                console.log("Fatiha play failed:", error);
+                alert('❌ تعذر تشغيل سورة الفاتحة. تأكد من وجود ملف fatiha.mp3');
+            });
+        });
+
+        // ===== المؤقت =====
+        function startTimer() {
+            let seconds = 0;
+            timerInterval = setInterval(() => {
+                seconds++;
+                const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+                const secs = String(seconds % 60).padStart(2, '0');
+                timerDisplay.textContent = `${mins}:${secs}`;
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            timerDisplay.textContent = '00:00';
+            isPlaying = false;
+        }
+
+        function showTimer() {
+            timerContainer.style.display = 'block';
+        }
+
+        function hideTimer() {
+            timerContainer.style.display = 'none';
+        }
+
+        // ===== عند انتهاء الصوت =====
+        audio.addEventListener('ended', function() {
+            const btn = document.getElementById('playBtn');
+            btn.classList.remove('playing');
+            btn.innerHTML = `
+                <span class="btn-icon">🕌</span>
+                <span class="btn-text">تشغيل هذه الآية</span>
+                <span class="btn-pulse"></span>
+            `;
+            stopTimer();
+            hideTimer();
+        });
+
+        fatihaAudio.addEventListener('ended', function() {
+            const btn = document.getElementById('fatihaBtn');
+            btn.classList.remove('playing');
+            btn.innerHTML = `
+                <span class="btn-icon">📖</span>
+                <span class="btn-text">سورة الفاتحة للأموات</span>
+            `;
+            stopTimer();
+            hideTimer();
+        });
+
+        // ===== تكبير الصور =====
+        function openImage(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'flex';
+            modalImg.src = src;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImage() {
+            document.getElementById('imageModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // ===== ضبط مستوى الصوت الافتراضي =====
+        audio.volume = 0.8;
+        fatihaAudio.volume = 0.8;
+
+        // ===== التحكم بالصوت بالكيبورد =====
+        document.addEventListener('keydown', function(e) {
+            if (e.key === ' ' || e.key === 'Space') {
+                e.preventDefault();
+                if (!audio.paused) {
+                    audio.pause();
+                } else {
+                    playBtn.click();
+                }
+            }
+            if (e.key === 'Escape') {
+                closeImage();
+            }
+        });
+
+        console.log('🚀 صفحة الذكريات - جاهزة!');
+        console.log('📖 اضغط Space لتشغيل/إيقاف الصوت');
+        console.log('🖼️ اضغط على الصور لتكبيرها');
+    </script>
+
+</body>
+</html>
